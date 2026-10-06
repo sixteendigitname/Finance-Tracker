@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Finance Tracker</h1>
+        <div>
+            <label for="month-filter">Month:</label>
+            <input type="month" id="month-filter">
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Add expense</h2>
+            <form id="expense-form">
+                <label for="item">Item:</label>
+                <input type="text" id="item" required>
+
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" min="0.01" id="price" required>
+
+                <label for="category">Category:</label>
+                <select id="category" required>
+                    <option value="" disabled selected>Choose…</option>
+                </select>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+
+                <p id="form-error" role="alert"></p>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Budget</h2>
+            <form id="budget-form">
+                <p id="budget-error" role="alert"></p>
+                <label for="budget-category">Category:</label>
+                <select id="budget-category" required>
+                    <option value="" disabled selected>Choose…</option>
+                </select>
+
+                <label for="budget-limit">Monthly limit:</label>
+                <input type="number" step="0.01" min="0" id="budget-limit" required>
+
+                <button type="submit">Set budget</button>
+            </form>
+            <div id="budget-bars"></div>
+        </section>
+
+        <section>
+            <h2>Spending by category</h2>
+            <div id="pie-chart"></div>
+            <ul id="chart-legend"></ul>
+        </section>
+
+        <section>
+            <h2>Expense ledger</h2>
+            <p id="empty-state">No expenses yet.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ledger-body"></tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Export data</h2>
+            <button type="button" id="export-json">Export JSON</button>
+            <button type="button" id="export-csv">Export CSV</button>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
