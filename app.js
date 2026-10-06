@@ -31,6 +31,13 @@ let budgets = loadBudgets()
 
 function handleSetBudget(event){
     event.preventDefault()
+
+    const month = monthFilter.value
+    if (budgets[month] == undefined){
+        budgets[month] = {}
+        budget[month][category] = limit
+    }
+
     const category = budgetCategoryInput.value
     const limit = Number(budgetLimit.value)
     if (!Number.isFinite(limit) || limit < 0){

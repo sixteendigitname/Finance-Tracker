@@ -28,12 +28,19 @@ def main():
     print(f"Max spending: {df['price'].max():.2f}")
     print(f"No. of rows: {df['price'].count():.2f}")
 
+    print("=== By category ===")
     by_category = df.groupby("category")["price"].agg(["sum", "mean", "count"])
     by_category["percent"] = by_category["sum"] / df['price'].sum() * 100
     by_category = by_category.sort_values("sum", ascending=False)
     print(by_category.round(2)) 
 
-    df["date"].dt.to_period("M")
+    print("=== By month ===")
+    by_month = df.groupby(df["date"].dt.to_period("M"))["price"].agg(["sum", "mean", "count"])
+    by_month["percent"] = by_month["sum"] / df["price"].sum() * 100
+    print(by_month.round(2))
+
+    print("=== Top 5 Items ===")
+    
 
     
     print(df.head())
